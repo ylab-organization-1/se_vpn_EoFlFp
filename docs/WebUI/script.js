@@ -1,5 +1,23 @@
 (function ($) {
   $(function () {
+    function updatePskTooltipWidth() {
+      const psk = document.getElementById("vpnPsk");
+      const btn = document.getElementById("applyPsk");
+      if (!psk || !btn) return;
+      const pskW = psk.getBoundingClientRect().width;
+      const btnW = btn.getBoundingClientRect().width;
+      let gap = 0;
+      const row = psk.closest(".psk-row");
+      if (row) {
+        const cs = getComputedStyle(row);
+        const g = cs.columnGap || cs.gap || "0px";
+        gap = parseFloat(g) || 0;
+      }
+      const total = pskW + btnW + gap;
+      document.documentElement.style.setProperty("--psk-input-w", total + "px");
+    }
+    updatePskTooltipWidth();
+    window.addEventListener("resize", updatePskTooltipWidth);
     function updateHeaderSize() {
       const h = $("#global-head").outerHeight();
       document.documentElement.style.setProperty("--header-h", h + "px");

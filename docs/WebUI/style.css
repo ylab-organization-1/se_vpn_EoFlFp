@@ -571,50 +571,12 @@ button {
   align-items: center;
   gap: 0.5rem;
 }
-.action-buttons {
-  position: relative;
-}
-
-.help-tooltip {
-  position: absolute;
-  top: 50%;
-  left: calc(100% + 0.1rem);
-  transform: translateY(-50%);
-  display: none;
-  z-index: 1500;
-}
-
-.help-tooltip-content {
-  background: #033560;
-  color: #fff;
-  padding: 0.6rem 0.8rem;
-  border-radius: 6px;
-  font-size: clamp(18px, 1.5vw, 22px);
-  line-height: 1.6;
-  width: max-content;
-  max-width: min(75vw, 500px);
-
-  white-space: normal;
-  word-break: normal;
-  overflow-wrap: break-word;
-
-  position: relative;
-}
-.help-tooltip-content::before {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: -6px;
-  transform: translateY(-50%);
-  border-width: 6px 6px 6px 0;
-  border-style: solid;
-  border-color: transparent #033560 transparent transparent;
-}
-
 .help-wrapper {
   position: relative;
   display: flex;
   align-items: center;
+  flex: 0 0 auto;
+  min-width: 0;
 }
 
 .help-anchor {
@@ -622,10 +584,48 @@ button {
   display: inline-flex;
   align-items: center;
 }
+#helpTooltip.help-tooltip {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  left: auto;
+  transform: none;
+  display: none;
+  z-index: 1500;
 
-.help-wrapper {
-  flex: 0 0 auto;
-  min-width: 0;
+  width: var(--psk-input-w, 12rem);
+  max-width: calc(100vw - 2rem);
+}
+
+#helpTooltip .help-tooltip-content {
+  background: #033560;
+  color: #fff;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  font-size: clamp(18px, 1.5vw, 22px);
+  line-height: 1.6;
+
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+
+  position: relative;
+}
+#helpTooltip .help-tooltip-content::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  right: 0.5rem;
+  left: auto;
+  transform: none;
+
+  border-width: 0 6px 6px 6px;
+  border-style: solid;
+  border-color: transparent transparent #033560 transparent;
 }
 .icon-btn.giveup-btn img {
   content: url("icons/giveup.svg");
@@ -673,4 +673,20 @@ button {
 #vpnUserInputArea .vpn-input-wrapper {
   width: 100%;
   margin: 0 auto;
+}
+.psk-row {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  align-items: center;
+}
+.psk-row {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  align-items: stretch;
+}
+.psk-row input,
+.psk-row button {
+  height: auto;
 }
